@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+
 class SavingNotFoundError(Exception):
     """요청한 상품 id가 저장된 적금에 없다."""
 

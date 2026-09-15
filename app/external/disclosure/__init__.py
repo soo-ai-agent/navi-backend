@@ -18,6 +18,8 @@
 호출부에서 드러난다.
 """
 
+from __future__ import annotations
+
 from app.external.disclosure.api import DisclosureClient
 from app.external.disclosure.code import InterestType, JoinDeny, ReserveType
 from app.external.disclosure.exception import DisclosureApiError

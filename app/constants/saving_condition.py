@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 CONDITION_SCHEMA_VERSION: str = "2"
 MAX_CONDITION_DEPTH: int = 5
 MAX_CONDITION_COUNT: int = 100
