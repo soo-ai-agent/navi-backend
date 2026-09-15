@@ -1,5 +1,7 @@
 """문장 순위 병합 검증 — LLM 이 지어낸 후보는 버리고, 빠뜨린 후보는 금리 순서로 보충한다."""
 
+from __future__ import annotations
+
 import logging
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import AsyncMock

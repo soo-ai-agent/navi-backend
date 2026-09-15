@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from unittest import IsolatedAsyncioTestCase
 
 from app.enums.saving_condition import ConditionField, ConditionOperator

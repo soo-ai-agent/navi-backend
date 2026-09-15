@@ -1,5 +1,7 @@
 """브라우저 연결 테스트 전용 서버. 고정 상품으로 실제 질문 API를 실행한다."""
 
+from __future__ import annotations
+
 import logging
 
 from dependency_injector import providers
