@@ -1,0 +1,16 @@
+# 이미지에 넣지 않는 것 — 비밀키·DB 는 서버에서 마운트한다
+backend.ini
+data/
+venv/
+.venv/
+.git/
+.idea/
+.pytest_cache/
+__pycache__/
+**/__pycache__/
+test/
+docs/
+scripts/
+_scan_all.py
+_scan_wish.py
+hermes-upstage-setup.sh
