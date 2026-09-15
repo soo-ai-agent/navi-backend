@@ -1,1 +1,2 @@
 pyright==1.1.414
+playwright==1.62.0
