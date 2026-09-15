@@ -1,0 +1,9 @@
+static_load.py
+**/.venv
+**/venv
+**/.idea
+backend.ini
+data/backend.db
+**/__pycache__
+_scan_*.py
+hermes-upstage-setup.sh
