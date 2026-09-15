@@ -1,0 +1,8 @@
+### 상품 갱신 — 공시 조회 → 저장 → 우대조건 구조화까지 한 번에 (LLM 호출이 많아 수 분 걸림)
+POST http://localhost:8000/api/v1/admin/saving-products/refresh
+
+### 금감원 적금 공시 원본 — 수집이 정상인지 확인
+GET http://localhost:8000/api/v1/admin/saving-products/disclosed
+
+### 금감원 금융회사 공시 원본
+GET http://localhost:8000/api/v1/admin/banks/disclosed

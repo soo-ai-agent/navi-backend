@@ -1,0 +1,32 @@
+### 다음 질문 받기 — 빈 답으로 시작
+POST http://localhost:8000/api/v1/questions/next
+Content-Type: application/json
+
+{}
+
+### 기간을 고른 뒤
+POST http://localhost:8000/api/v1/questions/next
+Content-Type: application/json
+
+{
+  "months": "12"
+}
+
+### 기간 상관없음 — 전 기간을 통틀어 비교한다
+POST http://localhost:8000/api/v1/questions/next
+Content-Type: application/json
+
+{
+  "months": "any"
+}
+
+### 답이 쌓인 상태
+POST http://localhost:8000/api/v1/questions/next
+Content-Type: application/json
+
+{
+  "months": "12",
+  "monthly": "300000",
+  "salary_bank:0010001": "yes",
+  "autopay": "yes"
+}
