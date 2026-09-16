@@ -7,13 +7,14 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.enums.saving import JoinRestriction
 from app.enums.saving_condition import ConditionStatus
 from app.model.database.base import Base
+from app.model.vo.condition_context_vo import ConditionContextVO
+from app.model.vo.monthly_limit_vo import MonthlyLimitVO
+from app.model.vo.saving_condition_source_vo import SavingConditionSourceVO
 
 if TYPE_CHECKING:
     from app.model.database.saving_bonus import SavingBonus
     from app.model.database.saving_condition import SavingCondition
     from app.model.vo.extracted_conditions_vo import ExtractedConditionsVO
-    from app.model.vo.saving_condition_source_vo import SavingConditionSourceVO
-    from app.model.vo.condition_context_vo import ConditionContextVO
     from app.model.database.rate_option import RateOption
 
 
@@ -129,9 +130,6 @@ class Saving(Base):
         self.homepage_url = homepage_url
 
     def condition_source(self) -> SavingConditionSourceVO:
-        # 순환 참조를 피하려고 함수 안에서 읽는다 — VO 가 이 Entity 를 참조한다.
-        from app.model.vo.saving_condition_source_vo import SavingConditionSourceVO
-
         saving_terms: set[int] = set()
         bonus_points: list[Decimal] = []
         for option in self.rate_options:
@@ -149,10 +147,6 @@ class Saving(Base):
         )
 
     def condition_context(self, option: RateOption) -> ConditionContextVO:
-        # 순환 참조를 피하려고 함수 안에서 읽는다 — VO 가 이 Entity 를 참조한다.
-        from app.model.vo.condition_context_vo import ConditionContextVO
-        from app.model.vo.monthly_limit_vo import MonthlyLimitVO
-
         return ConditionContextVO(
             self.bank_code, option.saving_term_months, MonthlyLimitVO.from_database(self.monthly_limit)
         )
