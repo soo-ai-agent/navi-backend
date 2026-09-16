@@ -1,9 +1,6 @@
 from __future__ import annotations
-
 from unittest import IsolatedAsyncioTestCase, TestCase
-
 import httpx
-
 from app.dto.response.saving_comparison import SavingComparisonsResponseDTO
 from app.enums.saving_comparison import MaturityEstimateStatus, SavingEligibilityStatus
 from app.model.database.saving import Saving

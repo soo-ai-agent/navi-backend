@@ -1,9 +1,7 @@
 from __future__ import annotations
-
 import json
 from decimal import Decimal
 from unittest import TestCase
-
 from app.enums.saving_condition import BonusConditionStatus
 from app.enums.saving_condition import ConditionStatus
 from app.enums.saving import JoinRestriction

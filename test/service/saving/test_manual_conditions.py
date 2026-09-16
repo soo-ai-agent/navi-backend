@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 from decimal import Decimal
 from unittest import IsolatedAsyncioTestCase, TestCase
-
 from app.dto.response.next_step import NextStepResponseDTO
 from app.dto.response.ranking import RankedSavingResponseDTO
 from app.enums.next_step import NextStepStatus

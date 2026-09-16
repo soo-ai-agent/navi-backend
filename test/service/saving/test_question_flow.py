@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 from decimal import Decimal
 from unittest import IsolatedAsyncioTestCase
-
 from app.enums.saving_condition import ConditionField, ConditionOperator
 from test.service.saving.saving_fixture import answers, bonus, group, predicate, saving, question_flow, raw_answers
 

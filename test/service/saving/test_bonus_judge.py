@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 from decimal import Decimal
 from unittest import TestCase
-
 from app.enums.saving_condition import ConditionField as F, ConditionOperator as O, ConditionMatch as M
 from app.enums.saving import BonusResult as R
 from app.model.vo.checked_bonus_vo import CheckedBonusVO

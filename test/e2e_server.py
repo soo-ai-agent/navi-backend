@@ -1,13 +1,10 @@
 """브라우저 연결 테스트 전용 서버. 고정 상품으로 실제 질문 API를 실행한다."""
 
 from __future__ import annotations
-
 import logging
-
 from dependency_injector import providers
 from fastapi import FastAPI
 from unittest.mock import AsyncMock
-
 from app.enums.saving_condition import ConditionField, ConditionOperator
 from app.model.database.bank import Bank
 from app.model.vo.banks_vo import BanksVO

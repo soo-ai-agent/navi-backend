@@ -1,14 +1,11 @@
 from __future__ import annotations
-
 from datetime import date
 import logging
 from decimal import Decimal
 from unittest.mock import AsyncMock
-
 from dependency_injector import providers
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-
 import app.model.database.saving_bonus  # 테스트를 단독 실행할 때도 Product의 ORM 관계를 등록한다.
 from app.service.question.question_flow import QuestionFlowService
 from infra.cache.banks import BanksCache
@@ -17,7 +14,6 @@ from infra.cache.saving_products import SavingProductsCache
 from bootstrap.container.application import ApplicationConfig
 from web.controllers.api.v1 import question
 from web.exception_handler import register_exception_handlers
-
 from app.constants.question_text import GOAL_AMOUNT_KEY
 from app.enums.answer_value import AnswerStatus
 from app.enums.saving_condition import ConditionField, ConditionMatch, ConditionOperator, ConditionSourceField, ConditionStatus

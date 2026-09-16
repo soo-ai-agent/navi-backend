@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from unittest import IsolatedAsyncioTestCase
-
 from app.enums.saving_condition import ConditionField, ConditionOperator
 from app.exception.question import SavingConditionsUnavailableError
 from test.service.saving.saving_fixture import answers, bonus, group, predicate, saving, question_flow

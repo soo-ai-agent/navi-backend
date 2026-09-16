@@ -1,5 +1,4 @@
 from __future__ import annotations
-
 import ast
 from graphlib import TopologicalSorter
 from pathlib import Path

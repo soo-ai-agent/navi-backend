@@ -1,12 +1,9 @@
 from __future__ import annotations
-
 from functools import partial
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import patch
-
 import httpx
 from pydantic import ValidationError
-
 from app.external.llm import ChatMessage, LlmClient, LlmApiError
 from app.external.llm.model import ChatRequest
 

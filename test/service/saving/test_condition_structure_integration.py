@@ -1,5 +1,4 @@
 from __future__ import annotations
-
 import asyncio
 import logging
 import json
@@ -8,10 +7,8 @@ from decimal import Decimal
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import patch
 from unittest.mock import AsyncMock
-
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
-
 from app.dao.saving import SavingDao
 from app.dao.bank import BankDao
 from app.dao.question import QuestionDao

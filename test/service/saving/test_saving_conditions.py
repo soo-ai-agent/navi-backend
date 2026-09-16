@@ -1,11 +1,8 @@
 from __future__ import annotations
-
 from copy import deepcopy
 from decimal import Decimal
 from unittest import TestCase
-
 from pydantic import ValidationError
-
 from app.enums.saving_condition import BonusConditionStatus, ConditionField, ConditionMatch, ConditionOperator, ConditionSourceField, ConditionStatus
 from app.enums.saving import JoinRestriction
 from app.model.database.saving_condition import SavingCondition

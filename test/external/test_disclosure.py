@@ -1,12 +1,9 @@
 from __future__ import annotations
-
 import json
 from functools import partial
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import patch
-
 import httpx
-
 from app.external.disclosure import DisclosureApiError, DisclosureClient, SavingProducts
 
 _PRODUCT = {

@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 import unittest
-
 from app.enums.answer_value import AnswerStatus
 from app.enums.saving_comparison import GoalReachStatus
 from app.model.vo.goal_amount_vo import GoalAmountVO

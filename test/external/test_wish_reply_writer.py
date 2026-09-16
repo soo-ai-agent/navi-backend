@@ -1,9 +1,7 @@
 from __future__ import annotations
-
 from decimal import Decimal
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import AsyncMock
-
 from app.dto.response.next_step import NextStepResponseDTO
 from app.dto.response.question import QuestionResponseDTO
 from app.dto.response.ranking import RankedSavingResponseDTO, RankingResultResponseDTO

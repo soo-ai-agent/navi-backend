@@ -1,10 +1,7 @@
 from __future__ import annotations
-
 from unittest import IsolatedAsyncioTestCase, TestCase
-
 import httpx
 from pydantic import ValidationError
-
 from app.dto.request.answer import AnswerRequestDTO
 from app.enums.saving_condition import ConditionStatus
 from app.external.llm.exception import ConditionExtractionError, LlmApiError

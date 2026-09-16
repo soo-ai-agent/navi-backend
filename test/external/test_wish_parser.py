@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import AsyncMock
-
 from app.enums.answer_kind import AnswerKind
 from app.enums.judge_kind import JudgeKind
 from app.external.llm.wish_parser import WishLlmParser

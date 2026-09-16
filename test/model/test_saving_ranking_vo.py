@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from unittest import TestCase
-
 from app.model.database.saving import Saving
 from app.model.vo.saving_rate import SavingRate
 from app.model.vo.saving_ranking_vo import SavingRankingVO

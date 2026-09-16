@@ -1,12 +1,9 @@
 from __future__ import annotations
-
 from datetime import datetime, timedelta, timezone
 from unittest import IsolatedAsyncioTestCase
-
 from sqlalchemy import insert, select, update
 from sqlalchemy.exc import IntegrityError, StatementError
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
-
 from app.dao.bank import BankDao
 from app.model.database.bank import Bank
 from app.model.database.base import Base

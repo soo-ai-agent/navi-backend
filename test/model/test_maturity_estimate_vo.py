@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 from decimal import Decimal
 from unittest import TestCase
-
 from app.enums.answer_value import AnswerStatus
 from app.enums.saving_comparison import MaturityEstimateStatus, SavingEligibilityStatus
 from app.enums.saving import InterestCalcType

@@ -1,11 +1,9 @@
 """정책성 적금 언급 판정 — 공시 API 에 없는 정책 상품은 그 턴에 바로 안내한다."""
 
 from __future__ import annotations
-
 import logging
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import AsyncMock
-
 from app.constants.policy_saving import POLICY_SAVING_NOTICE
 from app.dto.response.next_step import NextStepResponseDTO
 from app.dto.response.question import QuestionResponseDTO

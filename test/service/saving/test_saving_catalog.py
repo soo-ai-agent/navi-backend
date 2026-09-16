@@ -1,9 +1,6 @@
 from __future__ import annotations
-
 from unittest import IsolatedAsyncioTestCase, TestCase
-
 import httpx
-
 from app.dto.response.saving_catalog import CatalogSavingResponseDTO, SavingCatalogResponseDTO
 from app.enums.saving import MonthlyLimitStatus
 from app.enums.saving_condition import ConditionStatus

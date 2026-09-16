@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 from datetime import date
 from unittest import TestCase
-
 from app.enums.saving import InterestCalcType, JoinRestriction, ReserveType
 from app.external import disclosure
 

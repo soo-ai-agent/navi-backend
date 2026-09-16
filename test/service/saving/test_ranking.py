@@ -1,10 +1,7 @@
 from __future__ import annotations
-
 from decimal import Decimal
 from unittest import IsolatedAsyncioTestCase
-
 from pydantic import ValidationError
-
 from app.dto.request.answer import AnswerRequestDTO
 from app.enums.answer_value import AnswerStatus
 from app.enums.next_step import NextStepStatus

@@ -1,9 +1,6 @@
 from __future__ import annotations
-
 from unittest import TestCase
-
 from pydantic import ValidationError
-
 from app.enums.saving_condition import ConditionField, ConditionOperator, ConditionSourceField
 from app.model.vo.condition_predicate_vo import ConditionPredicateVO
 from app.model.vo.extracted_conditions_vo import ExtractedConditionsVO

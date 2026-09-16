@@ -1,15 +1,12 @@
 from __future__ import annotations
-
 import asyncio
 from datetime import datetime, timezone
 from logging import getLogger
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest import IsolatedAsyncioTestCase
-
 from sqlalchemy import inspect, insert, select
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
-
 from app.model.database.bank import Bank
 from app.model.database.base import Base
 from bootstrap.config_base import AppConfig

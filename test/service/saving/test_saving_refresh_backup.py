@@ -1,12 +1,10 @@
 from __future__ import annotations
-
 import logging
 import os
 import sqlite3
 import tempfile
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import AsyncMock, MagicMock
-
 from app.dto.response.saving_refresh import BonusStructureResponseDTO, DisclosureSyncResponseDTO
 from app.exception.saving import SavingBackupError
 from app.service.saving.saving_refresh import SavingRefreshService
