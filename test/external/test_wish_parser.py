@@ -35,3 +35,37 @@ class TestWishLlmParser(IsolatedAsyncioTestCase):
         self.assertEqual((), structured.answers)
         self.assertEqual("app_usability", structured.unmapped[0].name)
         self.assertEqual("편해야 함", structured.unmapped[0].text)
+
+    async def test_합성_키_goal_amount_의_답을_받아들인다(self):
+        structured = await self.parse(
+            '{"answers": [{"code": "goal_amount", "value": "2000000"}], "unmapped": []}'
+        )
+        self.assertEqual("goal_amount", structured.answers[0].code)
+        self.assertEqual("2000000", structured.answers[0].value)
+
+    async def test_숫자_질문의_단위_표기를_숫자로_정규화한다(self):
+        llm_client = AsyncMock()
+        llm_client.ask_json.return_value = (
+            '{"answers": [{"code": "months", "value": "6개월"}, {"code": "monthly", "value": "300,000원"}],'
+            ' "unmapped": []}'
+        )
+        questions = (
+            Question(code="months", title="얼마 동안 넣을까요?",
+                     answer_kind=AnswerKind.OPTIONS, judge_kind=JudgeKind.SAVING_TERM),
+            Question(code="monthly", title="매달 얼마씩 넣을까요? (원)",
+                     answer_kind=AnswerKind.NUMBER, judge_kind=JudgeKind.MONTHLY),
+        )
+        structured = await WishLlmParser(llm_client).parse("매달 30만원씩 6개월 넣고 싶어", questions)
+        values = {answer.code: answer.value for answer in structured.answers}
+        self.assertEqual("6", values["months"])
+        self.assertEqual("300000", values["monthly"])
+
+    async def test_숫자로_못_만드는_숫자_답은_버린다(self):
+        llm_client = AsyncMock()
+        llm_client.ask_json.return_value = '{"answers": [{"code": "months", "value": "반년쯤"}], "unmapped": []}'
+        questions = (
+            Question(code="months", title="얼마 동안 넣을까요?",
+                     answer_kind=AnswerKind.OPTIONS, judge_kind=JudgeKind.SAVING_TERM),
+        )
+        structured = await WishLlmParser(llm_client).parse("반년쯤 넣고 싶어", questions)
+        self.assertEqual((), structured.answers)

@@ -24,3 +24,21 @@ class WishStructureVO(BaseModel):
                 moved.append(UnmappedWishVO(name=answer.code, text=answer.value))
 
         return WishStructureVO(answers=tuple(known), unmapped=self.unmapped + tuple(moved))
+
+    def keep_numeric(self, numeric_codes: frozenset[str]) -> WishStructureVO:
+        """숫자로 답해야 하는 질문의 값을 숫자 문자열로 정규화한다. "6개월" 같은 단위 표기를 걷어내고,
+        숫자로 못 만들면 답을 버려 흐름이 다시 묻게 둔다."""
+        kept: list[WishAnswerVO] = []
+
+        for answer in self.answers:
+            if answer.code not in numeric_codes:
+                kept.append(answer)
+                continue
+
+            plain: str = answer.value.replace(",", "").replace(" ", "")
+            for unit in ("개월", "원", "세", "살"):
+                plain = plain.removesuffix(unit)
+            if plain.isdigit():
+                kept.append(WishAnswerVO(code=answer.code, value=plain))
+
+        return WishStructureVO(answers=tuple(kept), unmapped=self.unmapped)
