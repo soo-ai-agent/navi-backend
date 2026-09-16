@@ -6,6 +6,8 @@ from app.dto.response.wish import WishRankedSavingResponseDTO
 from app.enums.saving_condition import ConditionStatus
 from app.enums.saving import BonusResult
 from app.external.llm.wish_ranker import candidate_id
+from app.model.vo.checked_bonus_vo import CheckedBonusVO
+from app.model.vo.saving_rate import SavingRate
 from app.model.vo.saving_ranking_vo import SavingRankingVO
 
 if TYPE_CHECKING:
@@ -17,10 +19,8 @@ if TYPE_CHECKING:
     from app.model.database.rate_option import RateOption
     from app.model.vo.answers_vo import AnswersVO
     from app.model.vo.banks_vo import BanksVO
-    from app.model.vo.checked_bonus_vo import CheckedBonusVO
     from app.model.vo.condition_context_vo import ConditionContextVO
     from app.model.vo.extracted_conditions_vo import ExtractedConditionsVO
-    from app.model.vo.saving_rate import SavingRate
     from app.model.vo.saving_products_vo import SavingProductsVO
     from app.model.vo.unmapped_wish_vo import UnmappedWishVO
     from app.source.banks_source import BanksSource
@@ -124,9 +124,6 @@ class WishRankingService:
             saving: Saving, option: RateOption, extracted: ExtractedConditionsVO,
             answers: AnswersVO, context: ConditionContextVO,
     ) -> SavingRate:
-        from app.model.vo.checked_bonus_vo import CheckedBonusVO
-        from app.model.vo.saving_rate import SavingRate
-
         checked_bonuses: list[CheckedBonusVO] = []
         for bonus in extracted.bonuses:
             result: BonusResult = bonus.condition.evaluate(answers, context)
