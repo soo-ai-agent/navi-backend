@@ -1,12 +1,9 @@
 from __future__ import annotations
-
 from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
-
 from sqlalchemy import Date, Enum as SAEnum, ForeignKey, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-
 from app.enums.saving import JoinRestriction
 from app.enums.saving_condition import ConditionStatus
 from app.model.database.base import Base

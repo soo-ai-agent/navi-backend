@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from pydantic import BaseModel, ConfigDict
-
 from app.dto.response.next_step import NextStepResponseDTO
 from app.dto.response.ranking import RankedSavingResponseDTO
 from app.model.vo.saving_rate import SavingRate

@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 from sqlalchemy import Enum as SAEnum, ForeignKey, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
-
 from app.enums.saving_condition import ConditionStatus
 from app.constants.saving_condition import CONDITION_SCHEMA_VERSION
 from app.model.database.base import Base

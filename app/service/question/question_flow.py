@@ -1,9 +1,7 @@
 from __future__ import annotations
-
 from logging import Logger
 from time import perf_counter
 from typing import TYPE_CHECKING
-
 from infra.request_context import current_request_id, short_request_id
 from app.dto.response.next_step import NextStepResponseDTO
 from app.dto.response.question import QuestionResponseDTO

@@ -1,10 +1,7 @@
 from __future__ import annotations
-
 from typing import TYPE_CHECKING, Generic, TypeVar
-
 import httpx
 from pydantic import BaseModel
-
 from app.external.disclosure.exception import DisclosureApiError
 from app.external.disclosure.model import (
     Companies, CompaniesPage, Company, Page, SavingProduct, SavingProductOption, SavingProducts,

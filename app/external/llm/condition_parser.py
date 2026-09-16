@@ -1,9 +1,7 @@
 from __future__ import annotations
-
 import json
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
-
 from app.constants.saving_condition_prompt import SAVING_CONDITION_PROMPT
 from app.external.llm import ChatMessage
 from app.model.vo.extracted_conditions_vo import ExtractedConditionsVO

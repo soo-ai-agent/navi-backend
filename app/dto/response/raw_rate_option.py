@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from pydantic import BaseModel, ConfigDict
-
 from app.external.disclosure import SavingProductOption
 
 

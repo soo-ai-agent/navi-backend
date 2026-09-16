@@ -1,5 +1,4 @@
 from __future__ import annotations
-
 from app.enums.answer_value import AnswerStatus, YesNoAnswer
 
 YES_NO_OPTIONS: tuple[tuple[str, str], ...] = (

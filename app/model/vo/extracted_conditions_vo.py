@@ -1,9 +1,6 @@
 from __future__ import annotations
-
 from decimal import Decimal
-
 from pydantic import BaseModel, ConfigDict, Field
-
 from app.enums.saving_condition import BonusConditionStatus, ConditionMatch
 from app.enums.saving import JoinRestriction
 from app.exception.condition import ConditionVerificationError

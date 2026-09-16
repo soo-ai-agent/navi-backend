@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from datetime import datetime, timezone
-
 from sqlalchemy import DateTime
 from sqlalchemy.engine import Dialect
 from sqlalchemy.types import TypeDecorator

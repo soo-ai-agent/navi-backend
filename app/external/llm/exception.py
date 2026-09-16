@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from typing import TYPE_CHECKING
-
 import httpx
 from pydantic import ValidationError
 from app.exception.condition import ConditionVerificationError

@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from dataclasses import dataclass
-
 from app.constants.saving_condition import MAX_CONDITION_AGE
 from app.enums.answer_value import AnswerStatus, YesNoAnswer
 from app.enums.saving_condition import BANK_LIST_FIELDS, NO_BANK_ANSWER, BankAnswer, ConditionField

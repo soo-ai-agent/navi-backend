@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from dataclasses import dataclass
-
 from app.model.vo.monthly_limit_vo import MonthlyLimitVO
 
 

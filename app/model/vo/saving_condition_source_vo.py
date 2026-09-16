@@ -1,12 +1,9 @@
 from __future__ import annotations
-
 import hashlib
 import json
 from decimal import Decimal
 from typing import assert_never
-
 from pydantic import BaseModel, ConfigDict
-
 from app.enums.saving_condition import ConditionSourceField
 from app.enums.saving import JoinRestriction
 

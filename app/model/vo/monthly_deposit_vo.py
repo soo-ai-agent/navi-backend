@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from dataclasses import dataclass
-
 from app.enums.answer_value import AnswerStatus
 from app.model.vo.answered_amount_vo import AnsweredAmountVO
 from app.model.vo.answers_vo import AnswersVO

@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from typing import TYPE_CHECKING, Sequence
-
 from app.model.vo.banks_vo import BanksVO
 
 if TYPE_CHECKING:

@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from typing import TYPE_CHECKING, Sequence
-
 from app.model.vo.questions_vo import QuestionsVO
 
 if TYPE_CHECKING:

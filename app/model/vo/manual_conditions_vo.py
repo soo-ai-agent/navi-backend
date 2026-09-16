@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from pydantic import BaseModel, ConfigDict, Field
-
 from app.model.vo.extracted_conditions_vo import ExtractedConditionsVO
 from app.model.vo.saving_condition_source_vo import SavingConditionSourceVO
 

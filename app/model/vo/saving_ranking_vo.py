@@ -1,9 +1,7 @@
 from __future__ import annotations
-
 from dataclasses import dataclass
 from decimal import Decimal
 from typing import Sequence
-
 from app.enums.next_step import NextStepStatus
 from app.model.vo.condition_answer_vo import ConditionAnswerVO
 from app.model.vo.saving_rate import SavingRate

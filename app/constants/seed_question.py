@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from typing import Sequence
-
 from app.enums.answer_kind import AnswerKind
 from app.enums.judge_kind import JudgeKind
 from app.model.database.question import Question

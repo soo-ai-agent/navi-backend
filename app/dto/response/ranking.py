@@ -1,10 +1,7 @@
 from __future__ import annotations
-
 from decimal import Decimal
 from typing import TYPE_CHECKING, Sequence
-
 from pydantic import BaseModel, ConfigDict
-
 from app.enums.saving import MonthlyLimitStatus
 from app.model.vo.monthly_limit_vo import MonthlyLimitVO
 from app.enums.saving import BonusResult, InterestCalcType, ReserveType

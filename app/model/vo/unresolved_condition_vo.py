@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from pydantic import Field
-
 from app.model.vo.condition_evidence_vo import ConditionEvidenceVO
 
 

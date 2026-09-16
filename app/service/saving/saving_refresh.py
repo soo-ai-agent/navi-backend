@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 from time import perf_counter
 from typing import TYPE_CHECKING
-
 from infra.request_context import current_request_id, short_request_id
 from app.dto.response.saving_refresh import SavingRefreshResponseDTO
 from app.exception.saving import SavingBackupError

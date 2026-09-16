@@ -1,11 +1,8 @@
 from __future__ import annotations
-
 from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
-
 from pydantic import BaseModel, ConfigDict
-
 from app.dto.response.ranking import OtherConditionResponseDTO, checklist
 from app.enums.saving import MonthlyLimitStatus
 from app.enums.saving_condition import ConditionStatus

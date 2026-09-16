@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from dataclasses import dataclass
-
 from app.constants.question_text import GOAL_AMOUNT_KEY
 from app.enums.answer_value import AnswerStatus
 from app.enums.saving_comparison import GoalReachStatus

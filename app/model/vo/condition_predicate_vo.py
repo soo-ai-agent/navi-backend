@@ -1,11 +1,8 @@
 from __future__ import annotations
-
 from typing import assert_never
-
 from pydantic import Field, GetJsonSchemaHandler, StrictBool, StrictInt, StrictStr, TypeAdapter, model_validator
 from pydantic.json_schema import JsonSchemaValue
 from pydantic_core import CoreSchema
-
 from app.constants.saving_condition import MAX_CONDITION_AGE, MIN_CONDITION_NUMBER
 from app.enums.answer_value import AnswerStatus
 from app.enums.saving_condition import ConditionField, ConditionOperator

@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 from sqlalchemy import Boolean, Enum as SAEnum, Integer, String
 from sqlalchemy.orm import Mapped, mapped_column
-
 from app.enums.answer_kind import AnswerKind
 from app.enums.judge_kind import JudgeKind
 from app.model.database.base import Base

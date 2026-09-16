@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 from dataclasses import dataclass
 from typing import TypeVar
-
 from app.enums.answer_value import AnswerStatus
 from app.model.vo.answers_vo import AnswersVO
 

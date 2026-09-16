@@ -6,16 +6,13 @@ err_cd·err_msg 는 DisclosureClient 의 응답 모델에서 성공·실패 판�
 있어도 Pydantic 이 버린다.
 """
 from __future__ import annotations
-
 from dataclasses import dataclass
 from datetime import date, datetime
 import hashlib
 import re
 from decimal import Decimal
 from typing import ClassVar
-
 from pydantic import BaseModel, Field, field_validator
-
 from app.external.disclosure.code import InterestType, JoinDeny, ReserveType
 from app.model.database.bank import Bank
 from app.model.database.saving import Saving

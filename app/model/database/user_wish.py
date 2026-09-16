@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 from sqlalchemy import Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
-
 from app.model.database.base import Base
 from app.model.vo.wish_structure_vo import WishStructureVO
 

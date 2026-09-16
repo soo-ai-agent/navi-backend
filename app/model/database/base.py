@@ -1,10 +1,7 @@
 from __future__ import annotations
-
 from datetime import datetime, timezone
-
 from sqlalchemy import String, func
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-
 from app.model.database.utc_datetime import UTCDateTime
 
 

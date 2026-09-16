@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from typing import Protocol
-
 from app.model.vo.questions_vo import QuestionsVO
 
 

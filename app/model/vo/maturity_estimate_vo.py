@@ -1,9 +1,7 @@
 from __future__ import annotations
-
 from dataclasses import dataclass
 from decimal import Decimal, ROUND_DOWN
 from typing import assert_never
-
 from app.enums.answer_value import AnswerStatus
 from app.enums.saving_comparison import MaturityEstimateStatus, SavingEligibilityStatus
 from app.enums.saving import InterestCalcType

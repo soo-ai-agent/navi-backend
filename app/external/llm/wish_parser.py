@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 import json
 from typing import TYPE_CHECKING
-
 from app.constants.wish_prompt import WISH_PROMPT
 from app.external.llm import ChatMessage
 from app.model.vo.wish_structure_vo import WishStructureVO

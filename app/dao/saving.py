@@ -1,10 +1,7 @@
 from __future__ import annotations
-
 from typing import TYPE_CHECKING, Sequence
-
 from sqlalchemy import delete, select
 from sqlalchemy.orm import selectinload
-
 from app.model.database.saving_bonus import SavingBonus
 from app.model.database.rate_option import RateOption
 from app.model.database.saving import Saving

@@ -1,11 +1,8 @@
 from __future__ import annotations
-
 from decimal import Decimal
 from typing import TYPE_CHECKING, Sequence
-
 from sqlalchemy import ForeignKey, Numeric, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-
 from app.model.database.base import Base
 from app.enums.judge_kind import JudgeKind
 from app.enums.saving_condition import BankAnswer, ConditionOperator, ConditionField

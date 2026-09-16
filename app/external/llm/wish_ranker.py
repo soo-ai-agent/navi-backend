@@ -1,9 +1,6 @@
 from __future__ import annotations
-
 from typing import TYPE_CHECKING
-
 from pydantic import BaseModel, ConfigDict, Field
-
 from app.constants.wish_rank_prompt import WISH_RANK_PROMPT
 from app.external.llm import ChatMessage
 

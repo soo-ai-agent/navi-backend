@@ -1,9 +1,6 @@
 from __future__ import annotations
-
 from decimal import Decimal
-
 from pydantic import BaseModel, ConfigDict, Field
-
 from app.model.vo.condition_group_vo import ConditionGroupVO
 
 

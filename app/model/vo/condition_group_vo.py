@@ -1,9 +1,6 @@
 from __future__ import annotations
-
 from typing import assert_never
-
 from pydantic import BaseModel, ConfigDict, Field
-
 from app.constants.saving_condition import MAX_CONDITION_COUNT, MAX_CONDITION_DEPTH
 from app.enums.saving_condition import ConditionMatch
 from app.enums.saving import BonusResult

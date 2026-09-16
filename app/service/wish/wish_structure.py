@@ -1,10 +1,7 @@
 from __future__ import annotations
-
 from typing import TYPE_CHECKING
-
 import httpx
 from pydantic import ValidationError
-
 from infra.request_context import current_request_id, short_request_id
 from app.constants.policy_saving import POLICY_SAVING_KEYWORDS, POLICY_SAVING_NOTICE
 from app.dto.response.wish import WishResponseDTO

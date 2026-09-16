@@ -1,9 +1,6 @@
 from __future__ import annotations
-
 from typing import TYPE_CHECKING, Sequence
-
 from sqlalchemy import select
-
 from app.model.database.bank import Bank
 
 if TYPE_CHECKING:

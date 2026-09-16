@@ -1,9 +1,6 @@
 from __future__ import annotations
-
 from typing import TYPE_CHECKING
-
 import httpx
-
 from app.external.llm.exception import LlmApiError
 from app.external.llm.model import ChatRequest, ChatResponse
 

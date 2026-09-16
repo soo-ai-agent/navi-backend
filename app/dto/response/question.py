@@ -1,9 +1,6 @@
 from __future__ import annotations
-
 from typing import TYPE_CHECKING, TypeAlias, assert_never
-
 from pydantic import BaseModel, ConfigDict
-
 from app.constants.question_text import (
     AGE_OPTIONS, CARD_SPEND_OPTIONS, GOAL_AMOUNT_KEY, PERFORMANCE_MONTHS_OPTIONS, MONTHLY_DEPOSIT_OPTIONS, UNKNOWN_OPTION, PRINCIPAL_OPTIONS, YES_NO_OPTIONS,
 )

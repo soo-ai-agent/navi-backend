@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from typing import TYPE_CHECKING
-
 from app.dto.response.raw_savings import RawSavingsResponseDTO
 
 if TYPE_CHECKING:

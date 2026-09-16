@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 from enum import Enum
 from typing import assert_never
-
 from app.enums.saving import InterestCalcType, JoinRestriction, ReserveType as SavingReserveType
 
 

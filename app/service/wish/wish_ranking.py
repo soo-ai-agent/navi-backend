@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
-
 from infra.request_context import short_request_id
 from app.dto.response.wish import WishRankedSavingResponseDTO
 from app.enums.saving_condition import ConditionStatus

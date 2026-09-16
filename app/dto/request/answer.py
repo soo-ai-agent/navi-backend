@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from pydantic import ConfigDict, RootModel, StrictStr
-
 from app.model.vo.answer_vo import AnswerVO
 from app.model.vo.answers_vo import AnswersVO
 

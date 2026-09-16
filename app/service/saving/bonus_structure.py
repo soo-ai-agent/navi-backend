@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Sequence
-
 from infra.request_context import current_request_id, short_request_id
 from app.constants.seed_question import SEED_QUESTIONS
 from app.dto.response.saving_refresh import BonusStructureResponseDTO

@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from pydantic import BaseModel, ConfigDict
-
 from app.dto.response.question import QuestionResponseDTO
 from app.dto.response.ranking import RankingResultResponseDTO
 from app.enums.next_step import NextStepStatus

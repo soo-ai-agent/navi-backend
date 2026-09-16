@@ -1,9 +1,6 @@
 from __future__ import annotations
-
 from pydantic import BaseModel, ConfigDict
-
 from app.external.disclosure import SavingProducts
-
 from app.dto.response.raw_rate_option import RawRateOptionResponseDTO
 from app.dto.response.raw_saving import RawSavingResponseDTO
 

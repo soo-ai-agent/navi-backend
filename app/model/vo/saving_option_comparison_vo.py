@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 from dataclasses import dataclass
 from decimal import Decimal
-
 from app.enums.saving_condition import ConditionStatus
 from app.enums.saving import BonusResult
 from app.model.database.saving import Saving

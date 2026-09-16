@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from pydantic import BaseModel, ConfigDict
-
 from app.model.vo.unmapped_wish_vo import UnmappedWishVO
 from app.model.vo.wish_answer_vo import WishAnswerVO
 

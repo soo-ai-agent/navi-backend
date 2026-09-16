@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from typing import TYPE_CHECKING, Sequence
-
 from app.model.database.saving_condition import SavingCondition
 from app.model.database.saving_condition_attempt import SavingConditionAttempt
 from app.model.vo.saving_condition_source_vo import SavingConditionSourceVO
