@@ -1,11 +1,8 @@
 from __future__ import annotations
-
 import logging
 from importlib import import_module
 from os.path import dirname
-
 from dotenv import load_dotenv
-
 from bootstrap.config_base import AppConfig, INI_FILE, APP_NAME
 
 formatter = logging.Formatter('%(levelname)s:\t%(asctime)s\t%(message)s')
