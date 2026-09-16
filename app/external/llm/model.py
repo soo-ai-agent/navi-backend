@@ -28,6 +28,19 @@ class ChatChoice(BaseModel):
     message: ChatMessage
 
 
+class ChatUsage(BaseModel):
+    model_config = ConfigDict(frozen=True)
+    prompt_tokens: int
+    completion_tokens: int
+    total_tokens: int
+
+    def summary(self) -> str:
+        """로그 표기용 'prompt/completion/total' 한 토막."""
+        return f"{self.prompt_tokens}/{self.completion_tokens}/{self.total_tokens}"
+
+
 class ChatResponse(BaseModel):
     model_config = ConfigDict(frozen=True)
     choices: tuple[ChatChoice, ...] = Field(min_length=1)
+    usage: ChatUsage | None = None
+    """토큰 사용량. 서버·프록시에 따라 생략될 수 있어 없음을 허용한다 — 로그 메타로만 쓴다."""

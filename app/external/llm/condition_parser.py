@@ -34,7 +34,7 @@ class ConditionLlmParser:
             ChatMessage(role="system", content=SAVING_CONDITION_PROMPT + "\n" + schema),
             ChatMessage(role="user", content=source.model_dump_json()),
         )
-        answer: str = await self._llm_client.ask_json(messages, max_tokens=_CONDITION_MAX_TOKENS)
+        answer: str = await self._llm_client.ask_json(messages, max_tokens=_CONDITION_MAX_TOKENS, purpose="공시구조화")
         try:
             normalized_answer: str = normalize_condition_response(answer)
             received: ExtractedConditionsVO = ExtractedConditionsVO.model_validate_json(normalized_answer)

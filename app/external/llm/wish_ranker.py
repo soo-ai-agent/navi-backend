@@ -54,7 +54,7 @@ class WishLlmRanker:
         answer: str = await self._llm_client.ask_json((
             ChatMessage(role="system", content=WISH_RANK_PROMPT),
             ChatMessage(role="user", content=self._facts(message, candidates, banks, step, unmapped)),
-        ), max_tokens=_RANK_MAX_TOKENS, reasoning_effort=_RANK_REASONING_EFFORT)
+        ), max_tokens=_RANK_MAX_TOKENS, reasoning_effort=_RANK_REASONING_EFFORT, purpose="순위")
         return WishRankReply.model_validate_json(answer)
 
     @staticmethod

@@ -31,12 +31,14 @@ class ServiceConfig(containers.DeclarativeContainer):
         base_url=context.provided.app_config.DISCLOSURE_BASE_URL,
         bank_group_code=context.provided.app_config.DISCLOSURE_BANK_GROUP_CODE,
         auth_key=context.provided.app_config.DISCLOSURE_AUTH_KEY,
+        logger=context.provided.logger,
     )
     llm_client: ClassVar[providers.Provider[LlmClient]] = providers.Singleton(
         LlmClient,
         base_url=context.provided.app_config.LLM_BASE_URL,
         api_key=context.provided.app_config.LLM_API_KEY,
         model=context.provided.app_config.LLM_MODEL,
+        logger=context.provided.logger,
     )
     raw_saving_service: ClassVar[providers.Provider[RawSavingService]] = providers.Singleton(
         RawSavingService,

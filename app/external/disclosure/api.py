@@ -1,4 +1,5 @@
 from __future__ import annotations
+import time
 from typing import TYPE_CHECKING, Generic, TypeVar
 import httpx
 from pydantic import BaseModel
@@ -7,8 +8,10 @@ from app.external.disclosure.model import (
     Companies, CompaniesPage, Company, Page, SavingProduct, SavingProductOption, SavingProducts,
     SavingProductsPage
 )
+from infra.request_context import short_request_id
 
 if TYPE_CHECKING:
+    from logging import Logger
     from typing import AsyncIterator
 
 _TIMEOUT_SECONDS = 30
@@ -45,11 +48,13 @@ class DisclosureClient:
     """공시 topFinGrpNo — 금융권역. 우리는 은행 권역(020000)만 부른다"""
 
     _auth_key: str
+    _logger: Logger
 
-    def __init__(self, base_url: str, bank_group_code: str, auth_key: str) -> None:
+    def __init__(self, base_url: str, bank_group_code: str, auth_key: str, logger: Logger) -> None:
         self._base_url = base_url.rstrip("/")
         self._bank_group_code = bank_group_code
         self._auth_key = auth_key
+        self._logger = logger
 
     async def get_companies(self) -> Companies:
         companies: list[Company] = []
@@ -86,14 +91,31 @@ class DisclosureClient:
             ("topFinGrpNo", self._bank_group_code),
             ("pageNo", str(page_no)),
         )
+        self._logger.info(
+            "공시 호출 시작 | req=%s | path=%s | page=%d", short_request_id(), page_type.path, page_no,
+        )
+        started: float = time.monotonic()
 
         async with httpx.AsyncClient(timeout=_TIMEOUT_SECONDS) as client:
             response: httpx.Response = await client.get(url, params=params)
 
+        elapsed_ms: int = int((time.monotonic() - started) * 1000)
         if response.status_code != httpx.codes.OK:
+            self._logger.error(
+                "공시 호출 실패 | req=%s | path=%s | page=%d | status=%d | 소요ms=%d",
+                short_request_id(), page_type.path, page_no, response.status_code, elapsed_ms,
+            )
             raise DisclosureApiError.from_response(response)
 
         result: _ApiResult = _ApiResponse.model_validate_json(response.content).result
         if result.err_cd != _OK_ERROR_CODE:
+            self._logger.error(
+                "공시 호출 실패 | req=%s | path=%s | page=%d | err_cd=%s | 소요ms=%d",
+                short_request_id(), page_type.path, page_no, result.err_cd, elapsed_ms,
+            )
             raise DisclosureApiError(result.err_cd, result.err_msg)
+        self._logger.info(
+            "공시 호출 완료 | req=%s | path=%s | page=%d | status=%d | 응답bytes=%d | 소요ms=%d",
+            short_request_id(), page_type.path, page_no, response.status_code, len(response.content), elapsed_ms,
+        )
         return _PageResponse[page_type].model_validate_json(response.content).result

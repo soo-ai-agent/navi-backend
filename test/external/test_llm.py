@@ -1,5 +1,6 @@
 from __future__ import annotations
 from functools import partial
+from logging import getLogger
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import patch
 import httpx
@@ -18,7 +19,7 @@ class TestLlmClient(IsolatedAsyncioTestCase):
             self.content_type = request.headers["content-type"]
             return httpx.Response(status, text=body)
         with patch.object(httpx, "AsyncClient", partial(httpx.AsyncClient, transport=httpx.MockTransport(respond))):
-            return await LlmClient("https://llm.test", "test", "test-model").ask_json((ChatMessage(role="user", content="조건"),))
+            return await LlmClient("https://llm.test", "test", "test-model", getLogger(__name__)).ask_json((ChatMessage(role="user", content="조건"),))
 
     async def test_요청과_응답을_타입모델로_처리한다(self):
         content = await self.request('{"choices":[{"message":{"role":"assistant","content":"{}"}}]}')

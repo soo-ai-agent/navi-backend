@@ -1,6 +1,7 @@
 from __future__ import annotations
 import json
 from functools import partial
+from logging import getLogger
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import patch
 import httpx
@@ -41,7 +42,7 @@ class TestGetSavingProducts(IsolatedAsyncioTestCase):
             self.requested_page_numbers.append(page_no)
             return httpx.Response(200, content=json.dumps(responses[int(page_no) - 1]))
 
-        client = DisclosureClient("https://finlife.test", "020000", "test-key")
+        client = DisclosureClient("https://finlife.test", "020000", "test-key", getLogger(__name__))
         with patch.object(
             httpx, "AsyncClient", partial(httpx.AsyncClient, transport=httpx.MockTransport(handle))
         ):
