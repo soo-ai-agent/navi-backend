@@ -9,12 +9,13 @@ from bootstrap.initializer import DevelopEnvDbInitializer
 from config import app_config, logger as _logger
 from infra.request_context import begin_request_id, short_request_id
 from web.controllers.api.v1 import catalog, question, wish
+from web.controllers.api.v1.admin import llm as admin_llm
 from web.controllers.api.v1.admin import saving as admin_saving
 from web.exception_handler import register_exception_handlers
 
 di_container = ApplicationConfig()
 context = Context(di_container, _logger, app_config=app_config)
-di_container.wire(modules=(catalog, question, admin_saving, wish))
+di_container.wire(modules=(catalog, question, admin_saving, admin_llm, wish))
 
 
 @asynccontextmanager
@@ -51,6 +52,7 @@ async def log_request(request: Request, call_next) -> Response:
 
 app.include_router(question.router)
 app.include_router(admin_saving.router)
+app.include_router(admin_llm.router)
 app.include_router(catalog.router)
 app.include_router(wish.router)
 

@@ -13,6 +13,7 @@ from app.service.saving.raw_saving import RawSavingService
 from app.external.llm.wish_parser import WishLlmParser
 from app.external.llm.wish_ranker import WishLlmRanker
 from app.external.llm.wish_reply_writer import WishReplyWriter
+from app.service.admin.llm_test import AdminLlmTestService
 from app.service.wish.wish_ranking import WishRankingService
 from app.service.wish.wish_structure import WishStructureService
 
@@ -112,5 +113,14 @@ class ServiceConfig(containers.DeclarativeContainer):
         wish_ranking_service=wish_ranking_service,
         wish_parser=wish_llm_parser,
         reply_writer=wish_reply_writer,
+        logger=context.provided.logger,
+    )
+    admin_llm_test_service: ClassVar[providers.Provider[AdminLlmTestService]] = providers.Singleton(
+        AdminLlmTestService,
+        llm_client=llm_client,
+        savings_source=infra.saving_products_source,
+        banks_source=infra.banks_source,
+        questions_source=infra.questions_source,
+        question_flow_service=question_flow_service,
         logger=context.provided.logger,
     )
