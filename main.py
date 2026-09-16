@@ -56,13 +56,22 @@ app.include_router(wish.router)
 
 if __name__ == "__main__":
     import uvicorn
+    from uvicorn.config import LOGGING_CONFIG
 
+    from config import LOG_FORMAT
+
+    uvicorn_log_config: dict = LOGGING_CONFIG
+    for formatter_name in ("default", "access"):
+        uvicorn_log_config["formatters"][formatter_name]["fmt"] = LOG_FORMAT
     uvicorn.run(
         'main:app',
         host=app_config.HOST,
         port=app_config.PORT,
         workers=app_config.WORKERS,
         log_level=app_config.LOG_LEVEL,
+        log_config=uvicorn_log_config,
+        # 요청 시작·종료는 위 미들웨어가 req 와 함께 남긴다 — uvicorn access 로그는 중복이라 끈다.
+        access_log=False,
         reload=app_config.RELOAD,
         proxy_headers=True,
     )
