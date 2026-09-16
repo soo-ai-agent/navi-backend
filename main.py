@@ -58,11 +58,11 @@ if __name__ == "__main__":
     import uvicorn
     from uvicorn.config import LOGGING_CONFIG
 
-    from config import LOG_FORMAT
+    from infra.log_format import LOG_FORMAT, AlignedFormatter
 
     uvicorn_log_config: dict = LOGGING_CONFIG
     for formatter_name in ("default", "access"):
-        uvicorn_log_config["formatters"][formatter_name]["fmt"] = LOG_FORMAT
+        uvicorn_log_config["formatters"][formatter_name] = {"()": AlignedFormatter, "fmt": LOG_FORMAT}
     uvicorn.run(
         'main:app',
         host=app_config.HOST,
