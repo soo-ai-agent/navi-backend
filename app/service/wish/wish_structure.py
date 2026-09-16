@@ -126,7 +126,7 @@ class WishStructureService:
         reply: str = ""
         if message is not None:
             try:
-                reply = await self._reply_writer.write(structured, step, ())
+                reply = await self._reply_writer.write(structured, step, (), message)
             except _LLM_FAILURES as error:
                 raise self._structure_error(request_id, "답변 생성", error)
 

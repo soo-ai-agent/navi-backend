@@ -16,7 +16,10 @@ from app.model.vo.wish_structure_vo import WishStructureVO
 
 def _structured() -> WishStructureVO:
     return WishStructureVO(
-        answers=(), unmapped=(UnmappedWishVO(name="앱 사용 편의성", text="앱이 편한"),),
+        answers=(), unmapped=(
+            UnmappedWishVO(name="앱 사용 편의성", text="앱이 편한"),
+            UnmappedWishVO(name="재직 기간", text="회사 7개월"),
+        ),
     )
 
 
@@ -34,11 +37,12 @@ def _ranked_row() -> RankedSavingResponseDTO:
 class TestWishReplyWriter(IsolatedAsyncioTestCase):
     async def write(
             self, step: NextStepResponseDTO, ranked: tuple[WishRankedSavingResponseDTO, ...] = (),
+            message: str = "",
     ) -> tuple[str, str]:
         """(LLM 답변, LLM 에게 준 사실 목록)을 돌려준다."""
         llm_client = AsyncMock()
         llm_client.ask_json.return_value = '{"reply": "답변 문장"}'
-        reply = await WishReplyWriter(llm_client).write(_structured(), step, ranked)
+        reply = await WishReplyWriter(llm_client).write(_structured(), step, ranked, message)
         facts: str = llm_client.ask_json.call_args.args[0][1].content
         return reply, facts
 
@@ -50,8 +54,22 @@ class TestWishReplyWriter(IsolatedAsyncioTestCase):
         reply, facts = await self.write(NextStepResponseDTO.of_question(question))
         self.assertEqual("답변 문장", reply)
         self.assertIn("다음 질문: 얼마 동안 넣을까요?", facts)
-        self.assertIn("선택지: 12개월", facts)
-        self.assertIn("반영하지 못한 요구: 앱 사용 편의성", facts)
+        # 선택지는 화면 버튼이 보여주므로 facts 에 넣지 않는다.
+        self.assertNotIn("선택지", facts)
+        # 반영하지 못한 요구는 문형 반복을 막으려 한 줄로 묶는다.
+        self.assertIn("반영하지 못한 요구: 앱 사용 편의성, 재직 기간", facts)
+        # 발화가 없는 턴(버튼 답)에는 사용자 발화 줄이 없다.
+        self.assertNotIn("사용자가 방금 한 말", facts)
+
+    async def test_사용자_발화를_사실로_전달한다(self):
+        question = QuestionResponseDTO(
+            key="months", title="얼마 동안 넣을까요?", answer_kind=AnswerKind.OPTIONS,
+            options=(("12", "12개월"),),
+        )
+        _reply, facts = await self.write(
+            NextStepResponseDTO.of_question(question), message="사회초년생인데 적금 추천해주세요",
+        )
+        self.assertIn("사용자가 방금 한 말: 사회초년생인데 적금 추천해주세요", facts)
 
     async def test_확정_순위를_사실로_전달한다(self):
         result = RankingResultResponseDTO(rows=(_ranked_row(),))
