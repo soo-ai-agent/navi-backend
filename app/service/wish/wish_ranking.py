@@ -80,7 +80,7 @@ class WishRankingService:
         rows: list[WishRankedSavingResponseDTO] = []
         for rank, (candidate, reason) in enumerate(ordered, start=1):
             rows.append(WishRankedSavingResponseDTO.from_rate_with_reason(
-                candidate, rank, banks.name(candidate.saving.bank_code), reason,
+                candidate, rank, banks.of(candidate.saving.bank_code), reason,
             ))
         return WishRanking(rows=tuple(rows), reply=ranked.reply)
 

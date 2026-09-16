@@ -91,7 +91,7 @@ def question_flow(*products: Saving) -> QuestionFlowService:
 
     banks_cache = AsyncMock(spec=BanksCache)
     banks_cache.get.return_value = BanksVO(tuple(
-        Bank(bank_code=code, display_name=code) for code in sorted({p.bank_code for p in products})
+        Bank(bank_code=code, display_name=code, homepage_url="https://bank.example") for code in sorted({p.bank_code for p in products})
     ))
 
     questions_cache = AsyncMock(spec=QuestionsCache)

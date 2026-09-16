@@ -2,6 +2,7 @@ from __future__ import annotations
 from pydantic import BaseModel, ConfigDict
 from app.dto.response.next_step import NextStepResponseDTO
 from app.dto.response.ranking import RankedSavingResponseDTO
+from app.model.database.bank import Bank
 from app.model.vo.saving_rate import SavingRate
 from app.model.vo.wish_structure_vo import WishStructureVO
 
@@ -13,9 +14,9 @@ class WishRankedSavingResponseDTO(RankedSavingResponseDTO):
 
     @classmethod
     def from_rate_with_reason(
-            cls, rate: SavingRate, rank: int, bank_name: str, reason: str,
+            cls, rate: SavingRate, rank: int, bank: Bank, reason: str,
     ) -> WishRankedSavingResponseDTO:
-        base: RankedSavingResponseDTO = RankedSavingResponseDTO.from_rate(rate, rank, bank_name)
+        base: RankedSavingResponseDTO = RankedSavingResponseDTO.from_rate(rate, rank, bank)
         return cls(**dict(base), reason=reason)
 
 

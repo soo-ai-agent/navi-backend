@@ -440,7 +440,7 @@ class TestConditionStructureIntegration(IsolatedAsyncioTestCase):
         savings_cache = AsyncMock(spec=SavingProductsCache)
         savings_cache.get.return_value = SavingProductsVO(tuple(await self.products.list_all()))
         banks_cache = AsyncMock(spec=BanksCache)
-        banks_cache.get.return_value = BanksVO((Bank(bank_code="bank", display_name="은행"),))
+        banks_cache.get.return_value = BanksVO((Bank(bank_code="bank", display_name="은행", homepage_url="https://bank.example"),))
         questions_cache = AsyncMock(spec=QuestionsCache)
         questions_cache.get.return_value = QuestionsVO(())
         result = await QuestionFlowService(

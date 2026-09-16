@@ -7,6 +7,7 @@ from app.model.vo.monthly_limit_vo import MonthlyLimitVO
 from app.enums.saving import BonusResult, InterestCalcType, ReserveType
 
 if TYPE_CHECKING:
+    from app.model.database.bank import Bank
     from app.model.vo.checked_bonus_vo import CheckedBonusVO
     from app.model.vo.saving_rate import SavingRate
     from app.model.vo.other_condition_vo import OtherConditionVO
@@ -54,6 +55,9 @@ class RankedSavingResponseDTO(BaseModel):
     product_id: str
     rank: int
     bank_name: str
+    homepage_url: str
+    """가입 안내로 보낼 주소. 상품 안내 페이지를 알면 그 주소, 모르면 은행 대표 홈페이지다."""
+
     product_name: str
     rate: Decimal
     """확정된 우대만 반영한 금리(%)"""
@@ -76,7 +80,7 @@ class RankedSavingResponseDTO(BaseModel):
     other_bonus_conditions: tuple[OtherConditionResponseDTO, ...]
 
     @classmethod
-    def from_rate(cls, rate: SavingRate, rank: int, bank_name: str) -> RankedSavingResponseDTO:
+    def from_rate(cls, rate: SavingRate, rank: int, bank: Bank) -> RankedSavingResponseDTO:
         monthly_limit: MonthlyLimitVO = MonthlyLimitVO.from_database(rate.saving.monthly_limit)
         bonus_results: list[BonusResultResponseDTO] = []
         for checked in rate.checked_bonuses:
@@ -85,7 +89,8 @@ class RankedSavingResponseDTO(BaseModel):
         return cls(
             product_id=rate.saving.product_id,
             rank=rank,
-            bank_name=bank_name,
+            bank_name=bank.display_name,
+            homepage_url=rate.saving.homepage_url or bank.homepage_url,
             product_name=rate.saving.name,
             rate=rate.rate,
             base_rate=rate.option.base_rate,

@@ -40,8 +40,7 @@ class RankingStep:
 
         rows: list[RankedSavingResponseDTO] = []
         for rank, rate in enumerate(ranking.rates[:_RESULT_SIZE], start=1):
-            bank_name = banks.name(rate.saving.bank_code)
-            rows.append(RankedSavingResponseDTO.from_rate(rate, rank, bank_name))
+            rows.append(RankedSavingResponseDTO.from_rate(rate, rank, banks.of(rate.saving.bank_code)))
 
         self._logger.info("추천 결과 반환 | req=%s | 결과수=%d", short_request_id(request_id), len(rows))
         return NextStepResponseDTO.of_result(RankingResultResponseDTO(rows=tuple(rows)))

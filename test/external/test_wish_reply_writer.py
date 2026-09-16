@@ -22,7 +22,7 @@ def _structured() -> WishStructureVO:
 
 def _ranked_row() -> RankedSavingResponseDTO:
     return RankedSavingResponseDTO(
-        product_id="p1", rank=1, bank_name="테스트은행", product_name="튼튼적금",
+        product_id="p1", rank=1, bank_name="테스트은행", homepage_url="https://bank.example", product_name="튼튼적금",
         rate=Decimal("3.5"), base_rate=Decimal("3.0"), max_rate=Decimal("4.0"),
         reserve_type=ReserveType.FIXED, interest_calc_type=InterestCalcType.SIMPLE,
         saving_term_months=12, monthly_limit_status=MonthlyLimitStatus.UNLIMITED, monthly_limit=0,
