@@ -15,5 +15,4 @@ class RawSavingService:
 
     async def get_savings(self) -> RawSavingsResponseDTO:
         received: disclosure.SavingProducts = await self._disclosure_client.get_saving_products()
-
         return RawSavingsResponseDTO.from_received(received)

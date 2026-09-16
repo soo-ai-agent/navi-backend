@@ -15,8 +15,6 @@ from app.model.vo.saving_condition_source_vo import SavingConditionSourceVO
 
 if TYPE_CHECKING:
     from logging import Logger
-
-    from app.model.database.saving import Saving
     from app.service.question.question import QuestionService
     from app.external.llm.condition_parser import ConditionLlmParser
     from app.service.saving.saving import SavingService
@@ -25,9 +23,7 @@ if TYPE_CHECKING:
 @dataclass
 class _StructureTally:
     scanned: int = 0
-
     structured: int = 0
-
     created_bonuses: int = 0
     """구형 판정기와 호환되게 저장한 우대조건 건수"""
 

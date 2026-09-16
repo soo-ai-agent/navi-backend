@@ -26,7 +26,6 @@ async def refresh_savings(
 ) -> SavingRefreshResponseDTO:
     """
     공시를 받아 상품을 갱신한다. 금감원 조회 → 저장 → 우대조건 구조화까지 한 번에 돈다.
-
     LLM 호출이 상품 수만큼 나가 수 분이 걸린다.
     """
     return await saving_refresh_service.refresh()
