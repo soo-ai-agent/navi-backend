@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from typing import TYPE_CHECKING
-
 from infra.cache.timed_cache import TimedCache
 from infra.request_context import short_request_id
 

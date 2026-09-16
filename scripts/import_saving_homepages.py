@@ -1,10 +1,8 @@
 from __future__ import annotations
-
 import asyncio
 import json
 from pathlib import Path
 from typing import Mapping, Sequence
-
 from infra.request_context import current_request_id, short_request_id
 from app.model.database.saving import Saving
 from bootstrap.container.application import ApplicationConfig

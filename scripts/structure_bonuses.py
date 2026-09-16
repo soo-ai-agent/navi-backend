@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 import asyncio
-
 from bootstrap.container.application import ApplicationConfig
 from bootstrap.context import Context
 from bootstrap.initializer import DevelopEnvDbInitializer

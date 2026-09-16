@@ -6,9 +6,7 @@
 상품별 추출 실패는 기록하고 다음 상품을 계속 처리한다.
 """
 from __future__ import annotations
-
 import asyncio
-
 from bootstrap.container.application import ApplicationConfig
 from bootstrap.context import Context
 from bootstrap.initializer import DevelopEnvDbInitializer

@@ -1,5 +1,4 @@
 from __future__ import annotations
-
 from contextvars import ContextVar
 from uuid import uuid4
 

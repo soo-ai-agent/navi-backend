@@ -8,7 +8,6 @@
 "통과"와 "아무것도 안 봄"을 구분한다.
 """
 from __future__ import annotations
-
 import ast
 import pathlib
 import sys

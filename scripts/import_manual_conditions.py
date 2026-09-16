@@ -1,15 +1,12 @@
 from __future__ import annotations
-
 import argparse
 import asyncio
 import sqlite3
 from datetime import datetime
 from pathlib import Path
 from typing import Sequence
-
 from pydantic import TypeAdapter
 from sqlalchemy.ext.asyncio import AsyncEngine
-
 from app.model.database.saving import Saving
 from app.model.database.saving_bonus import SavingBonus
 from app.model.database.saving_condition import SavingCondition

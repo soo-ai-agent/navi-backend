@@ -1,10 +1,8 @@
 from __future__ import annotations
-
 import asyncio
 import json
 from pathlib import Path
 from typing import Sequence
-
 from app.enums.saving_condition import ConditionStatus
 from app.model.database.saving import Saving
 from app.model.database.saving_bonus import SavingBonus

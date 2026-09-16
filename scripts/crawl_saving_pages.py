@@ -1,12 +1,10 @@
 from __future__ import annotations
-
 import asyncio
 import json
 import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Mapping
-
 from playwright.async_api import Browser, Error as PlaywrightError, Page, async_playwright
 
 HOMEPAGE_FILE = Path("data/product-homepage.json")
