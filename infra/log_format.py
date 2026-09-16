@@ -5,10 +5,13 @@ import unicodedata
 LOG_FORMAT = "%(levelname)-8s %(asctime)s %(message)s"
 """레벨명은 8자 고정 폭 — INFO·WARNING 길이 차이로 뒤 열이 밀리지 않게 한다."""
 
-_ACTION_WIDTH = 26
-"""행위명 열의 표시 폭. 가장 긴 행위명("직접 저장 전 DB 백업 완료" = 25칸)보다 한 칸 넓다."""
+_ACTION_WIDTH = 28
+"""행위명 열의 표시 폭. 가장 긴 행위명("직접 저장 전 DB 백업 완료" = 25칸)에 진행 접두 2칸을 더해도 남는다."""
 
 _FIELD_SEPARATOR = " | "
+
+_PROGRESS_PREFIX = "- "
+"""요청 경계("요청 시작/종료/실패")가 아닌 처리 중간 진행 로그임을 나타내는 접두."""
 
 
 class AlignedFormatter(logging.Formatter):
@@ -18,6 +21,8 @@ class AlignedFormatter(logging.Formatter):
         message: str = record.getMessage()
         if _FIELD_SEPARATOR in message:
             action, rest = message.split(_FIELD_SEPARATOR, 1)
+            if not action.startswith("요청"):
+                action = _PROGRESS_PREFIX + action
             record.msg = _pad_display(action, _ACTION_WIDTH) + _FIELD_SEPARATOR + rest
             record.args = ()
         return super().format(record)
