@@ -1,10 +1,7 @@
 from __future__ import annotations
-
 import logging
-
 from fastapi import FastAPI, Request, status
 from fastapi.responses import JSONResponse
-
 from infra.request_context import current_request_id, short_request_id
 from app.exception.question import SavingConditionsUnavailableError
 from app.exception.saving import SavingBackupError, SavingNotFoundError

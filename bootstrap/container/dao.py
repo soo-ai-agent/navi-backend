@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 from dependency_injector import providers, containers
 from typing_extensions import ClassVar
-
 from app.dao.bank import BankDao
 from app.dao.question import QuestionDao
 from app.dao.saving import SavingDao

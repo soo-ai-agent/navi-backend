@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from typing import TYPE_CHECKING
-
 from app.model.database.base import Base
 from bootstrap.initializer.audit_columns import add_audit_columns
 

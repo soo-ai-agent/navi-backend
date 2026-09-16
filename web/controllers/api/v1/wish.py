@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 from dependency_injector.wiring import Provide, inject
 from fastapi import APIRouter, Depends
-
 from app.dto.request.wish import WishRequestDTO
 from app.dto.response.wish import WishResponseDTO
 from app.service.wish.wish_structure import WishStructureService

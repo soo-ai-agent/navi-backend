@@ -1,9 +1,6 @@
 from __future__ import annotations
-
 from typing import ClassVar
-
 from dependency_injector import providers, containers
-
 from app.service.bank.bank import BankService
 from app.service.question.question import QuestionService
 from app.service.saving.saving import SavingService

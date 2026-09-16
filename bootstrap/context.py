@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 from typing import TYPE_CHECKING, Generic, TypeVar
-
 from dependency_injector import providers
 
 if TYPE_CHECKING:

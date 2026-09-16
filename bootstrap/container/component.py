@@ -1,10 +1,7 @@
 from __future__ import annotations
-
 from typing import ClassVar, TYPE_CHECKING
-
 from dependency_injector import containers, providers
 from sqlalchemy.ext.asyncio import async_sessionmaker, AsyncEngine, AsyncSession, create_async_engine
-
 from infra.sqlite_backup import SqliteBackup
 
 if TYPE_CHECKING:

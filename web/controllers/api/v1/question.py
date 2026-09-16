@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 from dependency_injector.wiring import Provide, inject
 from fastapi import APIRouter, Depends
-
 from app.dto.request.answer import AnswerRequestDTO
 from app.dto.response.next_step import NextStepResponseDTO
 from app.service.question.question_flow import QuestionFlowService

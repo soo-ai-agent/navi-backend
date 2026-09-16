@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 from dependency_injector.wiring import Provide, inject
 from fastapi import APIRouter, Depends
-
 from app.dto.request.answer import AnswerRequestDTO
 from app.dto.response.saving_catalog import CatalogSavingResponseDTO, SavingCatalogResponseDTO
 from app.dto.response.saving_comparison import SavingComparisonsResponseDTO

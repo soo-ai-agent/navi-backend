@@ -1,9 +1,6 @@
 from __future__ import annotations
-
 from datetime import datetime, timezone
-
 from sqlalchemy.engine import Connection
-
 from app.model.database.base import Base
 
 

@@ -1,9 +1,6 @@
 from __future__ import annotations
-
 from typing import TYPE_CHECKING, ClassVar
-
 from dependency_injector import providers, containers
-
 from app.source.banks_source import BanksSource
 from app.source.questions_source import QuestionsSource
 from app.source.saving_products_source import SavingProductsSource

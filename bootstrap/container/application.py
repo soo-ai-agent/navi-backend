@@ -1,10 +1,7 @@
 from __future__ import annotations
-
 from typing import TYPE_CHECKING
-
 from dependency_injector import providers, containers
 from typing_extensions import ClassVar
-
 from bootstrap.container.component import ComponentConfig
 from bootstrap.container.dao import DaoConfig
 from bootstrap.container.infra import InfraConfig

@@ -1,9 +1,6 @@
 from __future__ import annotations
-
 from typing import TYPE_CHECKING, ClassVar
-
 from dependency_injector import providers, containers
-
 from app.external.disclosure import DisclosureClient
 from app.external.llm import LlmClient
 from app.service.question.question_flow import QuestionFlowService

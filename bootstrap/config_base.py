@@ -1,9 +1,7 @@
 from __future__ import annotations
-
 import os
 from logging import Logger
 from typing import ClassVar, Self
-
 from pydantic import BaseModel
 
 _DATA_DIR: str = os.environ.get("DATA_DIR", os.path.join(os.getcwd(), 'data'))
