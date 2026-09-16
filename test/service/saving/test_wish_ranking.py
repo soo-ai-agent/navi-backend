@@ -7,6 +7,7 @@ from unittest.mock import AsyncMock
 from app.dto.response.next_step import NextStepResponseDTO
 from app.dto.response.ranking import RankingResultResponseDTO
 from app.external.llm.wish_ranker import RankedWishItem, WishLlmRanker, WishRankReply, candidate_id
+from app.model.vo.answer_vo import AnswerVO
 from app.model.vo.answers_vo import AnswersVO
 from app.model.vo.banks_vo import BanksVO
 from app.model.vo.saving_products_vo import SavingProductsVO
@@ -86,6 +87,4 @@ class WishRankingMergeTest(IsolatedAsyncioTestCase):
 
 
 def _age_answer():
-    from app.model.vo.answer_vo import AnswerVO
-
     return AnswerVO("age", "25")

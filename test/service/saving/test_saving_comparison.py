@@ -7,6 +7,7 @@ from app.model.database.saving import Saving
 from app.model.vo.banks_vo import BanksVO
 from app.model.vo.questions_vo import QuestionsVO
 from app.model.vo.saving_products_vo import SavingProductsVO
+from test.e2e_server import app
 from test.service.saving.saving_fixture import answers, group, predicate, saving
 
 
@@ -26,8 +27,6 @@ class TestSavingComparisons(TestCase):
 
 class TestSavingComparisonEndpoint(IsolatedAsyncioTestCase):
     async def test_비교_API는_문자열_답변으로_개인금리와_null없는_예상액을_반환한다(self) -> None:
-        from test.e2e_server import app
-
         async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://test") as client:
             response: httpx.Response = await client.post(
                 "/api/v1/products/compare", content='{"monthly":"300000","age":"25","salary_bank:bank":"yes"}',

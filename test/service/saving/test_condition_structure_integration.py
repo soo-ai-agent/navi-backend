@@ -8,6 +8,7 @@ from unittest import IsolatedAsyncioTestCase
 from unittest.mock import patch
 from unittest.mock import AsyncMock
 from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 from app.dao.saving import SavingDao
 from app.dao.bank import BankDao
@@ -351,7 +352,6 @@ class TestConditionStructureIntegration(IsolatedAsyncioTestCase):
         saved = (await self.products.list_all())[0]
         pending = SavingCondition.pending(saved.condition_source())
         invalid = SavingBonus(product_id="bank:P1", label="금리 누락")
-        from sqlalchemy.exc import IntegrityError
         with self.assertRaises(IntegrityError):
             await self.products.save_conditions(pending, (invalid,))
 

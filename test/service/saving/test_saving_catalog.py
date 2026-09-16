@@ -10,6 +10,7 @@ from app.model.database.saving_condition import SavingCondition
 from app.model.vo.banks_vo import BanksVO
 from app.model.vo.questions_vo import QuestionsVO
 from app.model.vo.saving_products_vo import SavingProductsVO
+from test.e2e_server import app
 from test.service.saving.saving_fixture import saving
 
 
@@ -59,8 +60,6 @@ class TestSavingCatalog(TestCase):
 
 class TestSavingCatalogEndpoint(IsolatedAsyncioTestCase):
     async def test_공개_상품조회는_공시정보와_금리옵션을_반환한다(self) -> None:
-        from test.e2e_server import app
-
         async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://test") as client:
             response: httpx.Response = await client.get("/api/v1/products")
 
@@ -76,8 +75,6 @@ class TestSavingCatalogEndpoint(IsolatedAsyncioTestCase):
 
 class TestSavingDetailEndpoint(IsolatedAsyncioTestCase):
     async def test_상품_상세는_목록과_같은_상품_필드를_반환한다(self) -> None:
-        from test.e2e_server import app
-
         async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://test") as client:
             response: httpx.Response = await client.get("/api/v1/products/bank:P1")
 
@@ -89,8 +86,6 @@ class TestSavingDetailEndpoint(IsolatedAsyncioTestCase):
         self.assertEqual(12, item.rate_options[0].saving_term_months)
 
     async def test_없는_상품_상세는_404를_반환한다(self) -> None:
-        from test.e2e_server import app
-
         async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://test") as client:
             response: httpx.Response = await client.get("/api/v1/products/bank:NOPE")
 
