@@ -5,9 +5,11 @@ from os.path import dirname
 from dotenv import load_dotenv
 from bootstrap.config_base import AppConfig, INI_FILE, APP_NAME
 
-formatter = logging.Formatter('%(levelname)s:\t%(asctime)s\t%(message)s')
+LOG_FORMAT = "%(levelname)-8s %(asctime)s %(message)s"
+"""레벨명은 8자 고정 폭 — INFO·WARNING 길이 차이로 뒤 열이 밀리지 않게 한다."""
+formatter = logging.Formatter(LOG_FORMAT)
 stream_handler = logging.StreamHandler()
-logging.basicConfig(handlers=(stream_handler,), level=logging.INFO, format='%(levelname)s:\t%(asctime)s\t%(message)s')
+logging.basicConfig(handlers=(stream_handler,), level=logging.INFO, format=LOG_FORMAT)
 # httpx 요청 URL에는 인증 쿼리 값이 포함될 수 있으므로 원문 URL을 로그에 남기지 않는다.
 logging.getLogger("httpx").setLevel(logging.WARNING)
 logging.getLogger("httpcore").setLevel(logging.WARNING)
