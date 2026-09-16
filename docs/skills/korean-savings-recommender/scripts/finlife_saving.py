@@ -10,7 +10,6 @@
 from __future__ import annotations
 import json
 import os
-import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -24,15 +23,15 @@ BANK_GROUP = "020000"
 
 def load_auth_key() -> str:
     """FINLIFE_API_KEY 환경 변수가 있으면 그걸, 없으면 backend.ini 의 DISCLOSURE_AUTH_KEY 를 쓴다."""
-    key = os.environ.get("FINLIFE_API_KEY")
+    key = os.environ.get("FINLIFE_API_KEY", "")
     if key:
         return key
     if BACKEND_INI.exists():
         for line in BACKEND_INI.read_text().splitlines():
             if line.startswith("DISCLOSURE_AUTH_KEY="):
-                value = line.split("=", 1)[1].strip()
-                if value:
-                    return value
+                key = line.split("=", 1)[1].strip()
+    if key:
+        return key
     raise SystemExit(
         "인증키 없음: FINLIFE_API_KEY 환경 변수 또는 backend.ini 의 DISCLOSURE_AUTH_KEY 를 설정할 것"
     )
@@ -45,49 +44,46 @@ def call_finlife_saving(auth: str, top_fin_grp_no: str = BANK_GROUP, page_no: in
     if finance_cd:
         params["financeCd"] = finance_cd
     url = f"{BASE_URL}?{urllib.parse.urlencode(params)}"
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    request = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     try:
-        with urllib.request.urlopen(req, timeout=20) as resp:
-            return json.loads(resp.read().decode("utf-8", "replace"))
-    except urllib.error.HTTPError as e:
-        print("HTTP 에러:", e.code, e.reason)
-    except Exception as e:  # 네트워크·타임아웃·파싱 — 사유만 알리고 멈춘다
-        print("에러:", type(e).__name__, str(e))
-    return None
+        with urllib.request.urlopen(request, timeout=20) as response:
+            return json.loads(response.read().decode("utf-8", "replace"))
+    except Exception as error:  # 네트워크·HTTP·타임아웃·파싱 — 사유만 알리고 멈춘다
+        print("호출 실패:", type(error).__name__, error)
+        return None
 
 
 def fetch_all_pages(auth: str, top_fin_grp_no: str = BANK_GROUP,
                     max_pages: int = 5) -> tuple[list[dict], list[dict]]:
     """max_page_no 까지(상한 max_pages) 돌며 baseList·optionList 를 모은다."""
-    all_base: list[dict] = []
-    all_option: list[dict] = []
-    page = 1
-    while True:
+    bases: list[dict] = []
+    options: list[dict] = []
+    for page in range(1, max_pages + 1):
         data = call_finlife_saving(auth, top_fin_grp_no, page)
-        if not data:
+        if data is None:
             break
         result = data.get("result", {})
         if result.get("err_cd") != "000":
             print("API 오류:", result.get("err_cd"), result.get("err_msg"))
             break
-        all_base += result.get("baseList", [])
-        all_option += result.get("optionList", [])
-        if page >= result.get("max_page_no", 1) or page >= max_pages:
+        bases += result.get("baseList", [])
+        options += result.get("optionList", [])
+        if page >= result.get("max_page_no", 1):
             break
-        page += 1
-    return all_base, all_option
+    return bases, options
 
 
 def maturity(monthly: int, months: int, annual_rate: float,
              intr_rate_type: str = "S", tax: float = 0.154) -> tuple[int, float]:
     """(원금, 세후이자). intr_rate_type: S=단리, M=월복리 — optionList 에서 반드시 읽어올 것."""
     principal = monthly * months
-    if intr_rate_type == "M":
-        i = annual_rate / 1200
-        future_value = monthly * ((1 + i) ** (months + 1) - (1 + i)) / i
-        interest = future_value - principal
-    else:
-        interest = monthly * (annual_rate / 100) * (months * (months + 1) / 2) / 12
+    interest = 0.0
+    # 첫 납입금은 months 개월, 마지막 납입금은 1개월 굴러간다.
+    for held_months in range(1, months + 1):
+        if intr_rate_type == "M":
+            interest += monthly * ((1 + annual_rate / 100 / 12) ** held_months - 1)
+        else:
+            interest += monthly * (annual_rate / 100) * held_months / 12
     return principal, interest * (1 - tax)
 
 
@@ -100,13 +96,13 @@ def demo() -> None:
     # 복리가 단리보다 이자가 크다
     _, compound = maturity(500_000, 12, 3.5, "M")
     assert compound > after_tax
-    # 이자는 원금×금리의 약 절반 근처(예치 기간이 달마다 다름)
+    # 이자는 원금×금리보다 작다(납입금마다 예치 기간이 1년에 못 미침)
     assert after_tax < principal * 0.035
     print("만기 계산식 자가 점검 통과")
 
     auth = load_auth_key()
     data = call_finlife_saving(auth)
-    if not data:
+    if data is None:
         return
     result = data["result"]
     print("err:", result["err_cd"], result["err_msg"],
